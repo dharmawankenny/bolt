@@ -1,0 +1,10 @@
+{
+  "name": "bolt",
+  "version": "1.0.0",
+  "description": "Design System & UI Generator for Adaptive Information System for Charity Organization (AISCO) Web SPLE System.",
+  "main": "index.js",
+  "repository": "https://github.com/dharmawankenny/bolt.git",
+  "author": "Kenny Reida Dharmawan <dharmawankenny@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
