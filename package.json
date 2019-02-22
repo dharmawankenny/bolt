@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "dev": "start-storybook",
-    "build": "rm -rf static && build-storybook",
+    "build": "rm -rf storybook-static && build-storybook",
     "compilejs": "rm -rf js && tsc",
     "watchjs": "yarn compilejs --watch"
   },
