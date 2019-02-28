@@ -30,6 +30,10 @@ type Props = {
   /**
    *  @default false
    */
+  warning?: boolean;
+  /**
+   *  @default false
+   */
   disabled?: boolean;
   value?: string;
   onChange?: (value: string) => void;
@@ -77,6 +81,7 @@ InputField.defaultProps = {
   multiline: false,
   placeholder: '',
   error: false,
+  warning: false,
   disabled: false,
   value: null,
   onChangeText: null,

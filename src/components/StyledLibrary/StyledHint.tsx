@@ -3,6 +3,7 @@ import styled from 'styled-components';
 type CustomProps = {
   error?: boolean | undefined;
   disabled?: boolean | undefined;
+  warning?: boolean | undefined;
   textAlign?: 'left' | 'right' | 'center' | undefined;
 };
 
