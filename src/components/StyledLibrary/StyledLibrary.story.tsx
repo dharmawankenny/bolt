@@ -7,15 +7,25 @@ import StyledInput from './StyledInput';
 import StyledLabel from './StyledLabel';
 import StyledHint from './StyledHint';
 
-storiesOf('Base', module)
+storiesOf('Styled Library', module)
   .add('Input', () => (
-    <StyledInput placeholder={text('Placeholder', 'Placeholder')} disabled={boolean('Disabled', false)} error={boolean('Error', false)} />
+    <StyledInput
+      placeholder={text('Placeholder', 'Placeholder')}
+      disabled={boolean('Disabled', false)}
+      error={boolean('Error', false)}
+      warning={boolean('Warning', false)}
+    />
   ))
   .add('Label', () => (
     <StyledLabel disabled={boolean('Disabled', false)}>{text('Label', 'A Label')}</StyledLabel>
   ))
   .add('Hint', () => (
-    <StyledHint disabled={boolean('Disabled', false)} error={boolean('Error', false)} textAlign={select('Text Align', { Left: 'left', Center: 'center', Right: 'right' }, 'left')}>
+    <StyledHint
+      textAlign={select('Text Align', { Left: 'left', Center: 'center', Right: 'right' }, 'left')}
+      disabled={boolean('Disabled', false)}
+      error={boolean('Error', false)}
+      warning={boolean('Warning', false)}
+    >
       {text('Hint', 'A Very Long Hint')}
     </StyledHint>
   ));

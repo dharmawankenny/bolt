@@ -47,9 +47,24 @@ export default function InputField(props: Props) {
       {props.hint && (
         <Hints>
           <LeftHint>
-            <StyledHint disabled={props.disabled} error={props.error}>{props.hint.leftText}</StyledHint>
+            <StyledHint
+              disabled={props.disabled}
+              error={props.error}
+              warning={props.warning}
+            >
+              {props.hint.leftText}
+            </StyledHint>
           </LeftHint>
-          {props.hint.rightText && <StyledHint disabled={props.disabled} error={props.error} textAlign="right">{props.hint.rightText}</StyledHint>}
+          {props.hint.rightText && (
+            <StyledHint
+              disabled={props.disabled}
+              error={props.error}
+              warning={props.warning}
+              textAlign="right"
+            >
+              {props.hint.rightText}
+            </StyledHint>
+          )}
         </Hints>
       )}
     </Container>

@@ -17,5 +17,6 @@ storiesOf('InputField', module)
       multiline={boolean('Multiline', false)}
       disabled={boolean('Disabled', false)}
       error={boolean('Error', false)}
+      warning={boolean('Warning', false)}
     />
   ));
