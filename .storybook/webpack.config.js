@@ -1,4 +1,4 @@
-module.exports = (baseConfig, env, config) => {
+module.exports = ({ config }) => {
   // this enables typescript & doc gen
   config.module.rules.push({
     test: /\.tsx$/,

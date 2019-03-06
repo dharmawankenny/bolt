@@ -1,7 +1,7 @@
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
-import { setOptions } from '@storybook/addon-options';
+import { create } from '@storybook/theming';
 
 import TableComponent from './PropTable';
 import wrapper from './wrapper';
@@ -15,10 +15,18 @@ function importAll(r) {
   r.keys().forEach(key => (Cache[key] = r(key)));
 }
 
-setOptions({
-  name: 'Bolt',
-  url: 'https://bolt.reida.tech/',
-  addonPanelInRight: true,
+addParameters({
+  options: {
+    theme: create({
+      base: 'light',
+      brandTitle: 'Bolt',
+      brandUrl: 'https://bolt.reida.tech',
+      // To control appearance:
+      // brandImage: 'http://url.of/some.svg',
+    }),
+    isFullscreen: false,
+    panelPosition: 'right',
+  },
 });
 
 addDecorator(
