@@ -87,3 +87,5 @@ typings/
 
 # Compiled JavaScript from TypeScript
 js/
+
+.DS_Store

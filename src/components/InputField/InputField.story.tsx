@@ -5,7 +5,7 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 
 import InputField from './InputField';
 
-storiesOf('InputField', module)
+storiesOf('Base|InputField', module)
   .add('Default', () => (
     <InputField
       label={text('Label', 'A Text InputField')}

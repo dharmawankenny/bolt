@@ -48,7 +48,7 @@ const StyledInput = styled('input')<CustomProps>`
   }
 
   &::placeholder {
-    color: ${props => props.disabled ? props.theme.color.neutral.secondary : props.theme.color.light.dusk};
+    color: ${props => props.disabled ? props.theme.color.neutral.secondary : props.theme.color.neutral.primary};
     opacity: 1;
   }
 `;

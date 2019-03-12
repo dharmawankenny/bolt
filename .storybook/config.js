@@ -5,6 +5,7 @@ import { create } from '@storybook/theming';
 
 import TableComponent from './PropTable';
 import wrapper from './wrapper';
+import Logo from './Logo.svg';
 
 function loadStories() {
   importAll(require.context('../src', true, /\.story\.(js|tsx)$/));
@@ -22,10 +23,10 @@ addParameters({
       brandTitle: 'Bolt',
       brandUrl: 'https://bolt.reida.tech',
       // To control appearance:
-      // brandImage: 'http://url.of/some.svg',
+      brandImage: Logo, 
     }),
     isFullscreen: false,
-    panelPosition: 'right',
+    panelPosition: 'bottom',
   },
 });
 
