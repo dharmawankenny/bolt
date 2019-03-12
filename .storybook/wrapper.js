@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 const Wrapper = styled.div`
   width: 100%;
   margin: 0;
-  padding: 8px;
+  padding: 0;
 `;
 
 const exampleTheme = {

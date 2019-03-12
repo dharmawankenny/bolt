@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 import styled, { withTheme } from 'styled-components';
 
 import Chevron from '../../icons/Chevron';
+import useHover from '../../hooks/useHover';
 import useMeasure from '../../hooks/useMeasure';
 
 type Props = {
@@ -14,10 +15,11 @@ type Props = {
 
 function Accordion(props: Props) {
   const [expand, setExpand] = useState<boolean>(props.expandByDefault);
+  const [isHovered, hoverBindings] = useHover();
   
   const tickerSpringStyle = useSpring({
     from: { transform: 'scale3d(0, 0, 0)' },
-    to: { transform: expand ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 0)' },
+    to: { transform: (expand || isHovered) ? 'scale3d(1, 1, 1)' : 'scale3d(0, 0, 0)' },
   });
   
   const iconSpringStyle = useSpring({
@@ -35,7 +37,7 @@ function Accordion(props: Props) {
 
   return (
     <Container>
-      <Toggler onClick={() => setExpand(!expand)} expand={expand}>
+      <Toggler onClick={() => setExpand(!expand)} expand={expand} {...hoverBindings}>
         <Ticker style={tickerSpringStyle} />
         <TogglerContentContainer>{props.togglerContent}</TogglerContentContainer>
         <ChevronIcon>
@@ -43,7 +45,7 @@ function Accordion(props: Props) {
         </ChevronIcon>
       </Toggler>
       <ChildContainer style={childSpringStyle} expand={expand}>
-        <div {...bindings}>
+        <div {...bindings} style={{ width: '100%' }}>
           {props.children}
         </div>
       </ChildContainer>
