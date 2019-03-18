@@ -84,7 +84,19 @@ const exampleTheme = {
       normal: '0.375rem',
     },
     typography: {
-      baseline: {
+      huge: {
+        fontSize: '3.5rem',
+        lineHeight: '4rem',
+      },
+      big: {
+        fontSize: '2.5rem',
+        lineHeight: '3rem',
+      },
+      large: {
+        fontSize: '1.5rem',
+        lineHeight: '2rem',
+      },
+      medium: {
         fontSize: '1rem',
         lineHeight: '1.5rem',
       },
@@ -95,6 +107,10 @@ const exampleTheme = {
       tiny: {
         fontSize: '0.75rem',
         lineHeight: '1rem',
+      },
+      micro: {
+        fontSize: '0.625rem',
+        lineHeight: '0.75rem',
       },
     },
   },

@@ -74,7 +74,7 @@ export default function PropTable({ propDefinitions }) {
             {enumType ? (
               <TabItem width={15}>
                 {options.map((o, index) => (
-                  <div key={o} style={[index > 0 && styles.marginTop]}>
+                  <div key={o}>
                     {typeof o === 'string' ? o.replace(/"/g, '').trim() : o}
                   </div>
                 ))}

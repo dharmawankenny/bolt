@@ -27,6 +27,7 @@
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.1.12",
     "babel-loader": "^8.0.5",
+    "mkdirp": "^0.5.1",
     "react": "^16.8.4",
     "react-docgen-typescript-loader": "^3.0.1",
     "react-dom": "^16.8.4",

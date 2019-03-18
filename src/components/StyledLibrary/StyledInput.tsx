@@ -13,8 +13,8 @@ const StyledInput = styled('input')<CustomProps>`
   padding-bottom: calc(${props => `${props.theme.spacing.xs} - ${props.error ? props.theme.sizing.border.normal : props.theme.sizing.border.thin}`});
   color: ${props => props.theme.color.dark.primary};
   background: ${props => props.disabled ? props.theme.color.light.secondary : props.theme.color.light.primary};
-  font-size: ${props => props.theme.sizing.typography.baseline.fontSize};
-  line-height: ${props => props.theme.sizing.typography.baseline.lineHeight};
+  font-size: ${props => props.theme.sizing.typography.medium.fontSize};
+  line-height: ${props => props.theme.sizing.typography.medium.lineHeight};
   font-weight; 400;
   text-align: left;
   border: none;
