@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 
-import styled, { withTheme } from 'styled-components';
+import styled, { withTheme } from '../../styled';
 
 import Chevron from '../../icons/Chevron';
 import useHover from '../../hooks/useHover';
 import useMeasure from '../../hooks/useMeasure';
 
+import Text from '../Text/Text';
+
 type Props = {
-  children: React.ReactNode,
-  togglerContent: React.ReactNode,
-  expandByDefault: boolean,
+  children: React.ReactNode;
+  theme: Theme;
+  togglerContent?: React.ReactNode;
+  expandByDefault?: boolean;
 };
 
 function Accordion(props: Props) {
-  const [expand, setExpand] = useState<boolean>(props.expandByDefault);
+  const {
+    children,
+    theme,
+    togglerContent = (<Text variant="baseline" ellipsize>Toggle</Text>),
+    expandByDefault = false,
+  } = props;
+
+  const [expand, setExpand] = useState<boolean>(expandByDefault);
   const [isHovered, hoverBindings] = useHover();
   
   const tickerSpringStyle = useSpring({
@@ -23,11 +33,9 @@ function Accordion(props: Props) {
   });
   
   const iconSpringStyle = useSpring({
-    // @ts-ignore
-    from: { fill: props.theme.color.neutral.primary, transform: 'rotate(0deg)' },
+    from: { fill: theme.palette.neutral.base, transform: 'rotate(0deg)' },
     to: {
-      // @ts-ignore
-      fill: expand ? props.theme.color.blue.primary : props.theme.color.neutral.primary,
+      fill: expand ? theme.palette.primary.base : theme.palette.neutral.base,
       transform: expand ? 'rotate(-180deg)' : 'rotate(0deg)',
     },
   });
@@ -39,14 +47,14 @@ function Accordion(props: Props) {
     <Container>
       <Toggler onClick={() => setExpand(!expand)} expand={expand} {...hoverBindings}>
         <Ticker style={tickerSpringStyle} />
-        <TogglerContentContainer>{props.togglerContent}</TogglerContentContainer>
+        <TogglerContentContainer>{togglerContent}</TogglerContentContainer>
         <ChevronIcon>
           <Chevron springStyle={iconSpringStyle} />
         </ChevronIcon>
       </Toggler>
       <ChildContainer style={childSpringStyle} expand={expand}>
         <div {...bindings} style={{ width: '100%' }}>
-          {props.children}
+          {children}
         </div>
       </ChildContainer>
     </Container>
@@ -78,12 +86,12 @@ const Toggler = styled.button<StyledProps>`
   justify-content; flex-start;
   align-items: center;
   align-content: center;
-  background: ${props => props.expand ? props.theme.color.light.secondary : props.theme.color.light.primary};
+  background: ${props => props.expand ? props.theme.palette.light.accent : props.theme.palette.light.light};
   transition: 0.25s ease all;
   cursor: pointer;
 
   &:hover, &:focus {
-    background: ${props => props.theme.color.light.secondary};
+    background: ${props => props.theme.palette.light.accent};
     transition: 0.25s ease all;
   }
 `;
@@ -95,12 +103,6 @@ const TogglerContentContainer = styled.div`
   justify-content; flex-start;
   align-items: flex-start;
   align-content: flex-start;
-`;
-
-const DefaultTogglerContent = styled.div`
-  width: 100%;
-  margin: 0;
-  text-align: left;
 `;
 
 const ChildContainer = styled(animated.div)<StyledProps>`
@@ -129,13 +131,7 @@ const Ticker = styled(animated.div)`
   height: ${props => props.theme.spacing.xs};
   margin: 0 ${props => props.theme.spacing.xs} 0 0;
   border-radius: 100%;
-  background: ${props => props.theme.color.blue.primary};
+  background: ${props => props.theme.palette.primary.base};
 `;
 
-Accordion.defaultProps = {
-  expandByDefault: false,
-  togglerContent: (<DefaultTogglerContent>Toggle</DefaultTogglerContent>),
-};
-
-// @ts-ignore
 export default withTheme(Accordion);

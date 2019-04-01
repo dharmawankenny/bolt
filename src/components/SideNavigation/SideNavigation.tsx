@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { animated, useSpring } from 'react-spring';
-import styled from 'styled-components';
+import styled from '../../styled';
 
 import useHover from '../../hooks/useHover';
 
 import Accordion from '../Accordion/Accordion';
+import Text from '../Text/Text';
 
 type SubNavigationItem = {
   label: string;
@@ -41,7 +42,7 @@ function RootNavigation(navigation: NavigationItem) {
 
   return (
     <Accordion
-      togglerContent={<Toggler><img src={navigation.icon} /><span>{navigation.label}</span></Toggler>}
+      togglerContent={<Toggler><img src={navigation.icon} /><Text variant="small" weight="600">{navigation.label}</Text></Toggler>}
     >
       {navigation.subNavigations.map(subNavigation => (<SubNavigation {...subNavigation} />))}
     </Accordion>
@@ -58,7 +59,11 @@ function SingleNavigation(navigation: NavigationItem) {
 
   return (
     <NavigationLink {...hoverBindings}>
-      <a href={navigation.to} target="_blank"><animated.div style={tickerSpringStyle} className="ticker" /><img src={navigation.icon} />{navigation.label}</a>
+      <a href={navigation.to} target="_blank">
+        <animated.div style={tickerSpringStyle} className="ticker" />
+        <img src={navigation.icon} />
+        <SingleLinkText variant="small" weight="600">{navigation.label}</SingleLinkText>
+      </a>
     </NavigationLink>
   );
 }
@@ -74,7 +79,7 @@ function SubNavigation(subNavigation: SubNavigationItem) {
   return (
     <SubNavigationLink href={subNavigation.to} target="_blank" {...hoverBindings}>
       <animated.div style={tickerSpringStyle} className="ticker" />
-      {subNavigation.label}
+      <SingleLinkText variant="tiny" weight="600">{subNavigation.label}</SingleLinkText>
     </SubNavigationLink>
   );
 }
@@ -82,7 +87,7 @@ function SubNavigation(subNavigation: SubNavigationItem) {
 const Container = styled.div`
   width: 15rem;
   height: 100vh;
-  background: ${props => props.theme.color.light.primary};
+  background: ${props => props.theme.palette.light.light};
   display: flex;
   flex-flow: wrap column;
   justify-content: flex-start;
@@ -125,11 +130,11 @@ const NavigationLink = styled.div<{ active?: boolean; }>`
   margin: 0;
   padding: ${props => `${props.theme.spacing.xs} ${props.theme.spacing.xl} ${props.theme.spacing.xs} ${props.theme.spacing.m}`};
   cursor: pointer;
-  background: ${props => props.active ? props.theme.color.light.secondary : props.theme.color.light.primary};
+  background: ${props => props.active ? props.theme.palette.light.base : props.theme.palette.light.light};
   transition: 0.25s ease all;
 
   &:hover, &:focus {
-    background: ${props => props.theme.color.light.secondary};
+    background: ${props => props.theme.palette.light.accent};
     transition: 0.25s ease all;
   }
 
@@ -139,20 +144,20 @@ const NavigationLink = styled.div<{ active?: boolean; }>`
     justify-content: flex-start;
     align-items: center;
     align-content: center;
-    font-size: ${props => props.theme.sizing.typography.small.fontSize};
-    line-height: ${props => props.theme.sizing.typography.small.lineHeight};
+    font-size: ${props => props.theme.typography.small.fontSize};
+    line-height: ${props => props.theme.typography.small.lineHeight};
     font-weight: 600;
     text-align: left;
     letter-spacing: -1.5%;
     text-decoration: none;
-    color: ${props => props.theme.color.dark.primary};
+    color: ${props => props.theme.palette.dark.base};
   }
 
   .ticker {
     width: ${props => props.theme.spacing.xs};
     height: ${props => props.theme.spacing.xs};
     border-radius: 100%;
-    background: ${props => props.theme.color.blue.primary};
+    background: ${props => props.theme.palette.primary.base};
     margin: 0 ${props => props.theme.spacing.xs} 0 0;
   }
 
@@ -174,19 +179,16 @@ const SubNavigationLink = styled.a<{ active?: boolean; }>`
   width: 100%;
   margin: 0;
   padding: ${props => `${props.theme.spacing.xs} ${props.theme.spacing.xl}`};
-  font-size: ${props => props.theme.sizing.typography.tiny.fontSize};
-  line-height: ${props => props.theme.sizing.typography.tiny.lineHeight};
   font-weight: 600;
   text-align: left;
   letter-spacing: -1.5%;
   text-decoration: none;
   cursor: pointer;
-  color: ${props => props.theme.color.dark.primary};
-  background: ${props => props.active ? props.theme.color.light.secondary : props.theme.color.light.alternate};
+  background: ${props => props.active ? props.theme.palette.light.accent : props.theme.palette.light.base};
   transition: 0.25s ease all;
 
   &:hover, &:focus {
-    background: ${props => props.theme.color.light.secondary};
+    background: ${props => props.theme.palette.light.accent};
     transition: 0.25s ease all;
   }
 
@@ -194,7 +196,7 @@ const SubNavigationLink = styled.a<{ active?: boolean; }>`
     width: ${props => props.theme.spacing.xs};
     height: ${props => props.theme.spacing.xs};
     border-radius: 100%;
-    background: ${props => props.theme.color.blue.primary};
+    background: ${props => props.theme.palette.primary.base};
     margin: 0 ${props => props.theme.spacing.xs} 0 0;
   }
 `;
@@ -215,12 +217,11 @@ const Toggler = styled.div`
     margin: 0 ${props => props.theme.spacing.xs} 0 0;
   }
 
-  span {
+  & > div {
     flex: 1;
-    font-size: ${props => props.theme.sizing.typography.small.fontSize};
-    line-height: ${props => props.theme.sizing.typography.small.lineHeight};
-    letter-spacing: -1.5%;
-    font-weight: 600;
-    text-align: left;
   }
+`;
+
+const SingleLinkText = styled(Text)`
+  flex: 1;
 `;
