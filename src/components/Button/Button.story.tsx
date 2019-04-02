@@ -47,7 +47,13 @@ storiesOf('Base|Button', module)
       <Button intent="action" size="medium" expand>Medium</Button>
       <Button intent="action" size="large" expand>Large</Button>
       <SectionHeader variant="subtitle1" weight="bold">Disabled</SectionHeader>
-      <Button disabled>Disabled</Button>
+      <Button shape="base" disabled>Base</Button>
+      <Button shape="text" disabled>Inline Text</Button>
+      <Button shape="circular" disabled>Circular</Button>
+      <SectionHeader variant="subtitle1" weight="bold">Loading</SectionHeader>
+      <Button intent="action" shape="base" loading>Base</Button>
+      <Button intent="action" shape="text" loading>Inline Text</Button>
+      <Button intent="action" shape="circular" loading>Circular</Button>
     </Wrapper>
   ))
   .add('with knobs', () => (
